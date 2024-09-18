@@ -17,6 +17,10 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'dashboard/default',
+        loadComponent: () => import('./demo/default/dashboard/dashboard.component').then((c) => c.DefaultComponent),
+      },
+      {
         path: 'typography',
         loadComponent: () => import('./demo/ui-component/typography/typography.component')
       },
@@ -41,16 +45,16 @@ const routes: Routes = [
         loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent),
       },
       {
-        path: 'clientes',
-        loadComponent: () => import('./clientes/clientes.component').then((m) => m.ClientesComponent),
+        path: 'curso',
+        loadComponent: () => import('./cursos/cursos.component').then((m) => m.ClientesComponent),
       },
       {
-        path: 'nuevocliente',
-        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent),
+        path: 'nuevocurso',
+        loadComponent: () => import('./cursos/nuevocurso/nuevocurso.component').then((m) => m.NuevoclienteComponent),
       },
       {
-        path: 'editarcliente/:idCliente',
-        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent),
+        path: 'editarcurso/:idCurso',
+        loadComponent: () => import('./cursos/nuevocuerso/nuevocurso.component').then((m) => m.NuevoclienteComponent),
       },
       {
         path: 'editarfactura/:id',

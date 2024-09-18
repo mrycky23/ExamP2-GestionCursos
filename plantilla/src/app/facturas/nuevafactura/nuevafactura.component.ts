@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, Event } from '@angular/router';
 import { IFactura } from 'src/app/Interfaces/factura';
-import { ICliente } from 'src/app/Interfaces/icliente';
-import { ClientesService } from 'src/app/Services/clientes.service';
+import { ICliente } from 'src/app/Interfaces/icurso';
+import { ClientesService } from 'src/app/Services/curso.service';
 import { FacturaService } from 'src/app/Services/factura.service';
 
 @Component({
