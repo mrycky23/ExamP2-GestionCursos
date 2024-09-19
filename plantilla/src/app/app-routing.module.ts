@@ -57,42 +57,30 @@ const routes: Routes = [
         loadComponent: () => import('./cursos/nuevocurso/nuevocurso.component').then((m) => m.NuevoclienteComponent),
       },
       {
-        path: 'editarfactura/:id',
+        path: 'editarinscripcion/:id',
         loadComponent: () => import('./facturas/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent)
       },
       {
-        path: 'nuevafactura',
+        path: 'nuevainscripcion',
         loadComponent: () => import('./facturas/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent),
       },
       {
-        path: 'facturas',
+        path: 'inscripciones',
         loadComponent: () => import('./facturas/facturas.component').then((m) => m.FacturasComponent)
       },
       {
-        path: 'unidadmedida',
+        path: 'estudiantes',
         loadComponent: () => import('./unidadmedida/unidadmedida.component').then((m) => m.UnidadmedidaComponent),
       },
       {
-        path: 'nuevaunidadmedida',
+        path: 'nuevoestudiante',
         loadComponent: () =>
           import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
       },
       {
-        path: 'editarunidadmedida/:idUnidad_Medida',
+        path: 'editarestudiante/:idUnidad_Medida',
         loadComponent: () =>
           import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
-      },
-      {
-        path: 'productos',
-        loadComponent: () => import('./productos/productos.component').then((m) => m.ProductosComponent),
-      },
-      {
-        path: 'nuevoproducto',
-        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
-      },
-      {
-        path: 'editarproducto/:id',
-        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
       }
     ]
   },
