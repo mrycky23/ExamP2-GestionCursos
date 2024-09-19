@@ -7,7 +7,7 @@ import { ICurso } from '../Interfaces/icurso';
   providedIn: 'root'
 })
 export class CursosService {
-  apiurl = 'http://localhost/Tareas6to/TareaAppWeb6to5.2/Proyectos/03MVC/controllers/cursos.controller.php?op='; // URL ajustada para cursos
+  apiurl = 'http://localhost/ExamP2-GESTIONCURSOS/API/controllers/cursos.controller.php?op='; 
 
   constructor(private lector: HttpClient) {}
 

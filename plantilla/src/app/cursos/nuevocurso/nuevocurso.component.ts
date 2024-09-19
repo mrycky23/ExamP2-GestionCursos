@@ -1,19 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { ClientesService } from 'src/app/Services/curso.service';
-import { ICliente } from 'src/app/Interfaces/icurso';
+import { CursosService } from 'src/app/Services/curso.service';
+import { ICurso } from 'src/app/Interfaces/icurso';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'app-nuevocliente',
+  selector: 'app-nuevocurso',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './nuevocliente.component.html',
-  styleUrl: './nuevocliente.component.scss'
+  templateUrl: './nuevocurso.component.html',
+  styleUrl: './nuevocurso.component.scss'
 })
 export class NuevoclienteComponent implements OnInit {
-  frm_Cliente = new FormGroup({
+listaCursos: ICurso[]=[];
+totalapagar: any;
+calculos() {
+throw new Error('Method not implemented.');
+}
+cambio($event: Event) {
+throw new Error('Method not implemented.');
+}
+  frm_Curso = new FormGroup({
     //idClientes: new FormControl(),
     Nombres: new FormControl('', Validators.required),
     Direccion: new FormControl('', Validators.required),
@@ -22,9 +30,9 @@ export class NuevoclienteComponent implements OnInit {
     Correo: new FormControl('', [Validators.required, Validators.email])
   });
   idClientes = 0;
-  titulo = 'Nuevo Cliente';
+  titulo = 'Nuevo Curso';
   constructor(
-    private clienteServicio: ClientesService,
+    private cursoServicio: CursosService,
     private navegacion: Router,
     private ruta: ActivatedRoute
   ) {}
@@ -32,45 +40,29 @@ export class NuevoclienteComponent implements OnInit {
   ngOnInit(): void {
     this.idClientes = parseInt(this.ruta.snapshot.paramMap.get('idCliente'));
     if (this.idClientes > 0) {
-      this.clienteServicio.uno(this.idClientes).subscribe((uncliente) => {
-        this.frm_Cliente.controls['Nombres'].setValue(uncliente.Nombres);
-        this.frm_Cliente.controls['Direccion'].setValue(uncliente.Direccion);
-        this.frm_Cliente.controls['Telefono'].setValue(uncliente.Telefono);
-        this.frm_Cliente.controls['Cedula'].setValue(uncliente.Cedula);
-        this.frm_Cliente.controls['Correo'].setValue(uncliente.Correo);
-        /*this.frm_Cliente.setValue({
-          Nombres: uncliente.Nombres,
-          Direccion: uncliente.Direccion,
-          Telefono: uncliente.Telefono,
-          Cedula: uncliente.Cedula,
-          Correo: uncliente.Correo
-        });*/
-        /*this.frm_Cliente.patchValue({
-          Cedula: uncliente.Cedula,
-          Correo: uncliente.Correo,
-          Nombres: uncliente.Nombres,
-          Direccion: uncliente.Direccion,
-          Telefono: uncliente.Telefono
-        });*/
+      this.cursoServicio.uno(this.idClientes).subscribe((uncurso) => {
+        this.frm_Curso.controls['Nombres'].setValue(uncurso.nombre);
+        this.frm_Curso.controls['Descripcion'].setValue(uncurso.descripcion);
+        this.frm_Curso.controls['Fecha Inicio'].setValue(uncurso.fecha_inicio);
+        this.frm_Curso.controls['Fecha Fin'].setValue(uncurso.fecha_fin);
 
-        this.titulo = 'Editar Cliente';
+        this.titulo = 'Editar Curso';
       });
     }
   }
 
   grabar() {
-    let cliente: ICliente = {
-      idClientes: this.idClientes,
-      Nombres: this.frm_Cliente.controls['Nombres'].value,
-      Direccion: this.frm_Cliente.controls['Direccion'].value,
-      Telefono: this.frm_Cliente.controls['Telefono'].value,
-      Cedula: this.frm_Cliente.controls['Cedula'].value,
-      Correo: this.frm_Cliente.controls['Correo'].value
+    let curso: ICurso = {
+      curso_id: this.idClientes,
+      nombre: this.frm_Curso.controls['Nombres'].value,
+      descripcion: this.frm_Curso.controls['Descripcion'].value,
+      fecha_inicio: this.frm_Curso.controls['Fecha_inicio'].value,
+      fecha_fin: this.frm_Curso.controls['Fecha_fin'].value
     };
 
     Swal.fire({
-      title: 'Clientes',
-      text: 'Desea gurdar al Cliente ' + this.frm_Cliente.controls['Nombres'].value,
+      title: 'Cursos',
+      text: 'Desea guardar al curso ' + this.frm_Curso.controls['Nombres'].value,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#f00',
@@ -79,22 +71,22 @@ export class NuevoclienteComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.idClientes > 0) {
-          this.clienteServicio.actualizar(cliente).subscribe((res: any) => {
+          this.cursoServicio.actualizar(curso).subscribe((res: any) => {
             Swal.fire({
-              title: 'Clientes',
+              title: 'Cursos',
               text: res.mensaje,
               icon: 'success'
             });
-            this.navegacion.navigate(['/clientes']);
+            this.navegacion.navigate(['/cursos']);
           });
         } else {
-          this.clienteServicio.insertar(cliente).subscribe((res: any) => {
+          this.cursoServicio.insertar(curso).subscribe((res: any) => {
             Swal.fire({
-              title: 'Clientes',
+              title: 'Cursos',
               text: res.mensaje,
               icon: 'success'
             });
-            this.navegacion.navigate(['/clientes']);
+            this.navegacion.navigate(['/cursos']);
           });
         }
       }

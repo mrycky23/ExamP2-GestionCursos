@@ -9,23 +9,23 @@
       </h3>
     </div>
     <div class="row">
-      <form [formGroup]="frm_factura" novalidate (ngSubmit)="grabar()">
+      <form [formGroup]="frm_Curso" novalidate (ngSubmit)="grabar()">
         <div class="form-group mb-3">
           <label class="form-label">Cliente</label>
           <select class="form-control" (change)="cambio($event)">
             <option>Seleccione una opcion</option>
-            <!--@for (cliente of listaClientes; track $index) {
-              <option value="{{ cliente.idClientes }}">{{ cliente.Nombres }}</option>
-          }-->
+            @for (curso of listaCursos; track $index) {
+              <option value="{{ curso.curso_id }}">{{ curso.nombre }}</option>
+            }
           </select>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="password">Fecha</label>
           <input type="date" class="form-control" formControlName="Fecha" />
-          @if (frm_factura.get('Fecha').invalid && frm_factura.get('Fecha').touched) {
+          @if (frm_Curso.get('Fecha').invalid && frm_Curso.get('Fecha').touched) {
             <div>
-              @if (frm_factura.get('Fecha').hasError('required')) {
+              @if (frm_Curso.get('Fecha').hasError('required')) {
                 <small style="color: red">Los nombres son requeridos</small>
               }
             </div>
@@ -34,9 +34,9 @@
         <div class="form-group mb-3">
           <label class="form-label" for="Sub_total">Sub_total</label>
           <input type="text" class="form-control" formControlName="Sub_total" (blur)="calculos()" />
-          @if (frm_factura.get('Sub_total').invalid && frm_factura.get('Sub_total').touched) {
+          @if (frm_Curso.get('Sub_total').invalid && frm_Curso.get('Sub_total').touched) {
             <div>
-              @if (frm_factura.get('Sub_total').hasError('required')) {
+              @if (frm_Curso.get('Sub_total').hasError('required')) {
                 <small style="color: red">Los nombres son requeridos</small>
               }
             </div>
@@ -45,9 +45,9 @@
         <div class="form-group mb-3">
           <label class="form-label" for="Sub_total_iva">Sub_total_iva</label>
           <input type="text" class="form-control" formControlName="Sub_total_iva" />
-          @if (frm_factura.get('Sub_total_iva').invalid && frm_factura.get('Sub_total_iva').touched) {
+          @if (frm_Curso.get('Sub_total_iva').invalid && frm_Curso.get('Sub_total_iva').touched) {
             <div>
-              @if (frm_factura.get('Sub_total_iva').hasError('required')) {
+              @if (frm_Curso.get('Sub_total_iva').hasError('required')) {
                 <small style="color: red">Los nombres son requeridos</small>
               }
             </div>
@@ -74,10 +74,6 @@
 
 <!--
   IMPORTAR => FORMSMODULE  APP.MODULE.TS ||  NUEVOPROVEEDOR.COMPONENT.TS
-  
-  
-  
-  
   
   INTRPOLACION => DESDE EL TS AL HTML
   {{ }} 

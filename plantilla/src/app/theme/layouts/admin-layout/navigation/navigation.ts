@@ -80,10 +80,10 @@ export const NavigationItems: NavigationItem[] = [
       },
       {
         id: 'color',
-        title: 'Clientes',
+        title: 'Cursos',
         type: 'item',
         classes: 'nav-item',
-        url: '/clientes',
+        url: '/curso',
         icon: 'bg-colors'
       },
       {

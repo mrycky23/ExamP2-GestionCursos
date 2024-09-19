@@ -46,7 +46,7 @@ const routes: Routes = [
       },
       {
         path: 'curso',
-        loadComponent: () => import('./cursos/cursos.component').then((m) => m.ClientesComponent),
+        loadComponent: () => import('./cursos/cursos.component').then((m) => m.CursosComponent),
       },
       {
         path: 'nuevocurso',
@@ -54,7 +54,7 @@ const routes: Routes = [
       },
       {
         path: 'editarcurso/:idCurso',
-        loadComponent: () => import('./cursos/nuevocuerso/nuevocurso.component').then((m) => m.NuevoclienteComponent),
+        loadComponent: () => import('./cursos/nuevocurso/nuevocurso.component').then((m) => m.NuevoclienteComponent),
       },
       {
         path: 'editarfactura/:id',

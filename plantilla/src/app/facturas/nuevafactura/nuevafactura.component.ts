@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, Event } from '@angular/router';
 import { IFactura } from 'src/app/Interfaces/factura';
-import { ICliente } from 'src/app/Interfaces/icurso';
-import { ClientesService } from 'src/app/Services/curso.service';
+import { ICurso } from 'src/app/Interfaces/icurso';
+import { CursosService } from 'src/app/Services/curso.service';
 import { FacturaService } from 'src/app/Services/factura.service';
 
 @Component({
@@ -16,15 +16,15 @@ import { FacturaService } from 'src/app/Services/factura.service';
 export class NuevafacturaComponent implements OnInit {
   //variables o constantes
   titulo = 'Nueva Factura';
-  listaClientes: ICliente[] = [];
-  listaClientesFiltrada: ICliente[] = [];
+  listaClientes: ICurso[] = [];
+  listaClientesFiltrada: ICurso[] = [];
   totalapagar: number = 0;
   //formgroup
   frm_factura: FormGroup;
 
   ///////
   constructor(
-    private clietesServicios: ClientesService,
+    private CursosService: CursosService,
     private facturaService: FacturaService,
     private navegacion: Router
   ) {}
@@ -38,7 +38,7 @@ export class NuevafacturaComponent implements OnInit {
       Clientes_idClientes: new FormControl('', Validators.required)
     });
 
-    this.clietesServicios.todos().subscribe({
+    this.CursosService.todos().subscribe({
       next: (data) => {
         this.listaClientes = data;
         this.listaClientesFiltrada = data;
