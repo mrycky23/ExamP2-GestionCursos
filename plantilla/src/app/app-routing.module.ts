@@ -58,15 +58,15 @@ const routes: Routes = [
       },
       {
         path: 'editarinscripcion/:id',
-        loadComponent: () => import('./facturas/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent)
+        loadComponent: () => import('./inscripciones/nuevainscripcion/nuevainscripcion.component').then((m) => m.NuevainscripcionComponent)
       },
       {
         path: 'nuevainscripcion',
-        loadComponent: () => import('./facturas/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent),
+        loadComponent: () => import('./inscripciones/nuevainscripcion/nuevainscripcion.component').then((m) => m.NuevainscripcionComponent),
       },
       {
         path: 'inscripciones',
-        loadComponent: () => import('./facturas/facturas.component').then((m) => m.FacturasComponent)
+        loadComponent: () => import('./inscripciones/inscripciones.component').then((m) => m.InscripcionesComponent)
       },
       {
         path: 'estudiantes',

@@ -1,0 +1,69 @@
+<div class="card my-5">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <h3 class="mb-0">
+        {{ titulo }}
+      </h3>
+    </div>
+    <div class="row">
+      <form [formGroup]="frm_inscripcion" novalidate (ngSubmit)="grabar()">
+        <div class="form-group mb-3">
+          <label class="form-label">Estudiante</label>
+          <select class="form-control" (change)="cambio($event)">
+            <option>Seleccione una opción</option>
+            <!-- Llenar la lista de estudiantes -->
+            <option *ngFor="let estudiante of listaEstudiantes" [value]="estudiante.idEstudiante">{{ estudiante.nombre }}</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label">Curso</label>
+          <select class="form-control" (change)="cambioCurso($event)">
+            <option>Seleccione un curso</option>
+            <!-- Llenar la lista de cursos -->
+            <option *ngFor="let curso of listaCursos" [value]="curso.idCurso">{{ curso.nombreCurso }}</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="Fecha">Fecha de Inscripción</label>
+          <input type="date" class="form-control" formControlName="Fecha" />
+          <div *ngIf="frm_inscripcion.get('Fecha').invalid && frm_inscripcion.get('Fecha').touched">
+            <small style="color: red" *ngIf="frm_inscripcion.get('Fecha').hasError('required')">
+              La fecha es requerida.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="Sub_total">Sub Total</label>
+          <input type="text" class="form-control" formControlName="Sub_total" (blur)="calculos()" />
+          <div *ngIf="frm_inscripcion.get('Sub_total').invalid && frm_inscripcion.get('Sub_total').touched">
+            <small style="color: red" *ngIf="frm_inscripcion.get('Sub_total').hasError('required')">
+              El Sub Total es requerido.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="Sub_total_iva">Sub Total con IVA</label>
+          <input type="text" class="form-control" formControlName="Sub_total_iva" readonly />
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="Valor_IVA">IVA</label>
+          <input type="text" class="form-control" formControlName="Valor_IVA" readonly value="0.15" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="Total">Total a Pagar</label>
+          <input type="text" class="form-control" [value]="totalapagar" readonly />
+        </div>
+
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary">Grabar Inscripción</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
