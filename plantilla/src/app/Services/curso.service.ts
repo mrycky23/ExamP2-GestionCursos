@@ -57,4 +57,8 @@ export class CursosService {
     formData.append('fecha_fin', curso.fecha_fin?.toString() || '');
     return this.lector.post<string>(this.apiurl + 'actualizar', formData);
   }
+
+  obtenerCursos(): Observable<ICurso[]> {
+    return this.lector.get<ICurso[]>(`${this.apiurl}/cursos`);
+  }
 }

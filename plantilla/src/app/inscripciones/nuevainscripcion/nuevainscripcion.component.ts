@@ -5,6 +5,7 @@ import { IInscripcion } from 'src/app/Interfaces/inscripcion';
 import { ICurso } from 'src/app/Interfaces/icurso';
 import { CursosService } from 'src/app/Services/curso.service';
 import { InscripcionService } from 'src/app/Services/inscripcion.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nuevainscripcion',

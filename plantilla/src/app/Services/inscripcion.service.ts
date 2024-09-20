@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IInscripcion } from '../Interfaces/inscripcion';
 import { Observable } from 'rxjs';
+import { ICurso } from '../Interfaces/icurso';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,9 @@ export class InscripcionService {  // Cambiado a InscripcionService
     formData.append('estudiante_id', inscripcion.estudiante_id.toString());
     formData.append('fecha_inscripcion', inscripcion.fecha_inscripcion);
     return this.lector.post<string>(this.apiurl + 'actualizar', formData);
+  }
+
+  obtenerCursos(): Observable<ICurso[]> {
+    return this.lector.get<ICurso[]>(`${this.apiurl}/cursos`);
   }
 }

@@ -3,69 +3,58 @@
     <div class="d-flex justify-content-between align-items-end mb-4">
       <h3 class="mb-0">
         {{ titulo }}
-        <!--Interpolacion
-          sirve para enviar datos desde el .ts hacia el html
-          -->
       </h3>
     </div>
     <div class="row">
       <form [formGroup]="frm_Curso" novalidate (ngSubmit)="grabar()">
         <div class="form-group mb-3">
-          <label class="form-label">Cliente</label>
-          <select class="form-control" (change)="cambio($event)">
-            <option>Seleccione una opcion</option>
-            @for (curso of listaCursos; track $index) {
-              <option value="{{ curso.curso_id }}">{{ curso.nombre }}</option>
-            }
-          </select>
+          <label class="form-label" for="nombre">Nombre del Curso</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nombre"
+            id="nombre"
+            placeholder="Ingrese el nombre del curso"
+          />
+          <div *ngIf="frm_Curso.get('nombre').invalid && frm_Curso.get('nombre').touched">
+            <small *ngIf="frm_Curso.get('nombre').hasError('required')" style="color: red">
+              El nombre del curso es requerido
+            </small>
+          </div>
         </div>
 
         <div class="form-group mb-3">
-          <label class="form-label" for="password">Fecha</label>
-          <input type="date" class="form-control" formControlName="Fecha" />
-          @if (frm_Curso.get('Fecha').invalid && frm_Curso.get('Fecha').touched) {
-            <div>
-              @if (frm_Curso.get('Fecha').hasError('required')) {
-                <small style="color: red">Los nombres son requeridos</small>
-              }
-            </div>
-          }
-        </div>
-        <div class="form-group mb-3">
-          <label class="form-label" for="Sub_total">Sub_total</label>
-          <input type="text" class="form-control" formControlName="Sub_total" (blur)="calculos()" />
-          @if (frm_Curso.get('Sub_total').invalid && frm_Curso.get('Sub_total').touched) {
-            <div>
-              @if (frm_Curso.get('Sub_total').hasError('required')) {
-                <small style="color: red">Los nombres son requeridos</small>
-              }
-            </div>
-          }
-        </div>
-        <div class="form-group mb-3">
-          <label class="form-label" for="Sub_total_iva">Sub_total_iva</label>
-          <input type="text" class="form-control" formControlName="Sub_total_iva" />
-          @if (frm_Curso.get('Sub_total_iva').invalid && frm_Curso.get('Sub_total_iva').touched) {
-            <div>
-              @if (frm_Curso.get('Sub_total_iva').hasError('required')) {
-                <small style="color: red">Los nombres son requeridos</small>
-              }
-            </div>
-          }
+          <label class="form-label" for="fecha">Fecha de Inicio</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="fecha"
+            id="fecha"
+          />
+          <div *ngIf="frm_Curso.get('fecha').invalid && frm_Curso.get('fecha').touched">
+            <small *ngIf="frm_Curso.get('fecha').hasError('required')" style="color: red">
+              La fecha es requerida
+            </small>
+          </div>
         </div>
 
         <div class="form-group mb-3">
-          <label class="form-label" for="Valor_IVA">Valor_IVA</label>
-          <input type="text" class="form-control" formControlName="Valor_IVA" readonly value="0.15" />
-        </div>
-
-        <div class="form-group mb-3">
-          <label class="form-label" for="Sub_total_iva">Total a Pagar</label>
-          <input type="text" class="form-control" ngValue="total" readonly [value]="totalapagar" />
+          <label class="form-label" for="fechaFin">Fecha de Fin</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="fechaFin"
+            id="fechaFin"
+          />
+          <div *ngIf="frm_Curso.get('fechaFin').invalid && frm_Curso.get('fechaFin').touched">
+            <small *ngIf="frm_Curso.get('fechaFin').hasError('required')" style="color: red">
+              La fecha de fin es requerida
+            </small>
+          </div>
         </div>
 
         <div class="d-grid mt-3">
-          <button type="submit" class="btn btn-primary">Grabar factura</button>
+          <button type="submit" class="btn btn-primary" [disabled]="frm_Curso.invalid">Grabar Curso</button>
         </div>
       </form>
     </div>
@@ -73,14 +62,14 @@
 </div>
 
 <!--
-  IMPORTAR => FORMSMODULE  APP.MODULE.TS ||  NUEVOPROVEEDOR.COMPONENT.TS
-  
-  INTRPOLACION => DESDE EL TS AL HTML
+  IMPORTAR => FORMSMODULE EN APP.MODULE.TS || NUEVOCURSO.COMPONENT.TS
+
+  INTERPOLACION => DESDE EL TS AL HTML
   {{ }} 
   EVENTOS => EJECUTAR FUNCIONES EN EL TS
   ()
   DATA BINDING => DESDE EL HTML AL TS
   []
-  TWO WAY BIDING => ENVIADO DE DATOS DESDE EL HTML AL TS Y DESDE EL TS AL HTML
+  TWO WAY BINDING => ENVIADO DE DATOS DESDE EL HTML AL TS Y DESDE EL TS AL HTML
   [()]
-  -->
+-->

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEstudiante } from '../Interfaces/iestudiante'; // Asegúrate de crear esta interfaz
+import { ICurso } from '../Interfaces/icurso';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { IEstudiante } from '../Interfaces/iestudiante'; // Asegúrate de crear 
 export class EstudianteService {
   
   apiurl = 'http://localhost/ExamP2-GESTIONCURSOS/API/controllers/estudiantes.controller.php?op=';
+  apiCursosUrl = 'http://localhost/ExamP2-GESTIONCURSOS/API/controllers/cursos.controller.php?op='; // URL para cursos
 
   constructor(private http: HttpClient) {}
 
@@ -59,5 +61,10 @@ export class EstudianteService {
     formData.append('curso_idCurso', estudiante.curso_idCurso.toString());
 
     return this.http.post<string>(this.apiurl + 'actualizar', formData);
+  }
+
+  // Método para obtener la lista de cursos
+  obtenerCursos(): Observable<ICurso[]> {
+    return this.http.get<ICurso[]>(this.apiCursosUrl + 'todos'); // Asegúrate de que este endpoint exista en tu API
   }
 }

@@ -70,12 +70,12 @@ const routes: Routes = [
       },
       {
         path: 'estudiantes',
-        loadComponent: () => import('./unidadmedida/unidadmedida.component').then((m) => m.UnidadmedidaComponent),
+        loadComponent: () => import('./estudiantes/estudiantes.component').then((m) => m.EstudiantesComponent),
       },
       {
         path: 'nuevoestudiante',
         loadComponent: () =>
-          import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
+          import('./estudiantes/nuevoestudiante/nuevoestudiante.component').then((m) => m.NuevoEstudianteComponent),
       },
       {
         path: 'editarestudiante/:idUnidad_Medida',

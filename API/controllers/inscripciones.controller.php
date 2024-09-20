@@ -10,7 +10,7 @@ if ($method == "OPTIONS") {
 
 //TODO: controlador de clientes Tienda Cel@g
 
-require_once('../models/clientes.model.php');
+require_once('../models/inscripciones.model.php');
 error_reporting(0);
 $inscripciones = new Inscripciones;
 

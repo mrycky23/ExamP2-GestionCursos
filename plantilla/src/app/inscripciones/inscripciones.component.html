@@ -3,7 +3,7 @@
     <app-card cardTitle="Lista de Inscripciones" blockClass="pc-component">
       <div class="col-md-12 col-xl-8">
         <h5 class="mb-3">
-          <a href="nuevainscripcion" class="btn btn-outline-dark">Nueva Inscripción</a>
+          <a routerLink="/nuevainscripcion" class="btn btn-outline-dark">Nueva Inscripción</a>
         </h5>
         <div class="card tbl-card">
           <div class="table-responsive">
@@ -14,7 +14,7 @@
                   <th>Curso</th>
                   <th>Estudiante</th>
                   <th>Fecha de Inscripción</th>
-                  <th></th>
+                  <th class="text-end">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -22,11 +22,12 @@
                   <td>{{ i + 1 }}</td>
                   <td>{{ inscripcion.nombreCurso }}</td>
                   <td>{{ inscripcion.nombreEstudiante }}</td>
-                  <td>{{ inscripcion.fecha_inscripcion }}</td>
-                  <td>
-                    <button type="button" class="btn btn-outline-success" [routerLink]="['/editarinscripcion/', inscripcion.inscripcion_id]">
+                  <td>{{ inscripcion.fecha_inscripcion | date:'shortDate' }}</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-outline-success" [routerLink]="['/editarinscripcion', inscripcion.inscripcion_id]">
                       Editar
                     </button>
+                    
                     <button (click)="eliminar(inscripcion.inscripcion_id)" type="button" class="btn btn-outline-danger">Eliminar</button>
                   </td>
                 </tr>
